@@ -14,12 +14,13 @@ stages:
   - job: SecondJob
     steps:
     - bash: echo SecondJob Build
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Buld.SourceDirectory)
-    - bash: echo $(Build.DefaultWorkingDirectory)
-    - bash: echo $(Build.ArtifactStagingDirectory)
+    - bash: echo 1 $(Build.BuildNumber)
+    - bash: echo 2 $(Build.BuildId)
+    - bash: echo 3 $(Build.SourceBranchName)
+    - bash: echo 4 $(Buld.SourceDirectory)
+    - bash: echo 5 $(Build.DefaultWorkingDirectory)
+    - bash: echo 6 $(Build.ArtifactStagingDirectory)
+    - bash: echo 7 $(System.DefaultWorkingDirectory)
     - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: java -version
     - bash: python --version
