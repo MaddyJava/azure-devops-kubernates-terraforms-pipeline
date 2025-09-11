@@ -1,0 +1,36 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  jobs:
+  - job: FirstJob
+    steps:
+    - bash: echo FirstJob Build
+    - bash: echo $(pipelinelevelvariable)
+  - job: SecondJob
+    steps:
+    - bash: echo SecondJob Build
+    - bash: echo 1 $(Build.BuildNumber)
+    - bash: echo 2 $(Build.BuildId)
+    - bash: echo 3 $(Build.SourceBranchName)
+    - bash: echo 4 $(Buld.SourceDirectory)
+    - bash: echo 5 $(Build.DefaultWorkingDirectory)
+    - bash: echo 6 $(Build.ArtifactStagingDirectory)
+    - bash: echo 7 $(System.DefaultWorkingDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: java -version
+    - bash: python --version
+    - bash: node --version
+    - bash: mvn -version
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
