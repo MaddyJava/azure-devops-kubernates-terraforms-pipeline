@@ -13,10 +13,9 @@ steps:
   inputs:
     secureFile: 'azure_rsa.pub'
 
-
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
   inputs:
-    terraformVersion: 'latest' # Or a specific version
+    terraformVersion: 'latest'
 
 - task: TerraformCLI@2
   inputs:
@@ -25,8 +24,6 @@ steps:
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key = $(publickey.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-manager-service-connection'
-    backendAzureRmTenantId: '96f6082f-bc39-42e6-a8b9-54590a3ca46a'
-    backendAzureRmSubscriptionId: 'b13851fd-217d-41ff-90d7-358e9727fc8e'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
