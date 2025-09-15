@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo $(System.DefaultWorkingDirectory)
+- script: echo Kubernates Azure DevOps Pipeline IAAC
   displayName: 'Run a one-line script'
 
 - task: DownloadSecureFile@1
@@ -21,13 +21,15 @@ steps:
   inputs:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key = $(publickey.secureFilePath)'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-manager-service-connection'
+    backendAzureRmTenantId: '96f6082f-bc39-42e6-a8b9-54590a3ca46a'
+    backendAzureRmSubscriptionId: '96b335f7-4c64-4c64-4ae4-82b8-bfe2524d137c'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageacctmunixyz'
     backendAzureRmContainerName: 'storageacctmunicontainer'
     backendAzureRmKey: 'kubernates-dev.tfstate'
-    allowTelemetryCollection: true
+    allowTelemetryCollection: false
