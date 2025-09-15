@@ -17,7 +17,9 @@ steps:
   inputs:
     terraformVersion: 'latest'
 
-
+- script: ls -l /opt/hostedtoolcache/terraform/1.13.2/x64/terraform
+  displayName: 'Terraform executable'
+  
 - task: TerraformCLI@2
   inputs:
     command: 'init'
