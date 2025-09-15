@@ -18,6 +18,9 @@ steps:
     terraformVersion: 'latest'
 
 - script: ls /opt/hostedtoolcache/terraform/1.13.2/x64/terraform
+- script: whereis terraform
+- script: terraform --version
+- script: which terraform
   displayName: 'Terraform executable'
   
 - task: TerraformCLI@2
