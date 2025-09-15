@@ -21,6 +21,7 @@ steps:
 - script: whereis terraform
 - script: terraform --version
 - script: which terraform
+- bash: chmod +x terraform
   displayName: 'Terraform executable'
   
 - task: TerraformCLI@2
