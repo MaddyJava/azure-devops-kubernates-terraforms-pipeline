@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo K8S Cluster!
+- script: echo $(System.DefaultWorkingDirectory)
   displayName: 'Run a one-line script'
 
 - task: DownloadSecureFile@1
