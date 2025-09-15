@@ -25,7 +25,7 @@ steps:
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-manager-service-connection'
     backendAzureRmTenantId: '96f6082f-bc39-42e6-a8b9-54590a3ca46a'
-    backendAzureRmSubscriptionId: '96b335f7-4c64-4c64-4ae4-82b8-bfe2524d137c'
+    backendAzureRmSubscriptionId: '96f6082f-bc39-42e6-a8b9-54590a3ca46a'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
