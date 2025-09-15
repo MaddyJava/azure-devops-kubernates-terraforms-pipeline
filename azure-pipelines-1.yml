@@ -1,0 +1,31 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo K8S Cluster!
+  displayName: 'Run a one-line script'
+
+- task: DownloadSecureFile@1
+  name: publickey
+  inputs:
+    secureFile: 'azure_rsa.pub'
+
+- task: TerraformCLI@2
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuraton/iaac/azure/kubernates'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key = $(publickey.secureFilePath)'
+    backendType: 'azurerm'
+    backendServiceArm: 'azure-resource-manager-service-connection'
+    backendAzureRmTenantId: '96f6082f-bc39-42e6-a8b9-54590a3ca46a'
+    backendAzureRmSubscriptionId: 'b13851fd-217d-41ff-90d7-358e9727fc8e'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmResourceGroupLocation: 'westeurope'
+    backendAzureRmStorageAccountName: 'storageacctmunixyz'
+    backendAzureRmContainerName: 'storageacctmunicontainer'
+    backendAzureRmKey: 'kubernates-dev.tfstate'
+    allowTelemetryCollection: true
