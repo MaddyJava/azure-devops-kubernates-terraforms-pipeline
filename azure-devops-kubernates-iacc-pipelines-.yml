@@ -13,7 +13,7 @@ steps:
   inputs:
     secureFile: 'azure_rsa.pub'
 
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@1
+- task: TerraformInstallerOCI@5
   inputs:
     terraformVersion: 'latest'
 
