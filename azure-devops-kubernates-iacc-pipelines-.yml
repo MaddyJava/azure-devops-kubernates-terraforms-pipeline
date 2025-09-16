@@ -23,7 +23,8 @@ steps:
 - script: which terraform
 - bash: chmod +x /opt/hostedtoolcache/terraform/1.13.2/x64/terraform
   displayName: 'Terraform executable'
-  
+- bash: ls $(terraform-working-directory)
+- checkout: self
 - task: TerraformCLI@2
   inputs:
     command: 'init'
