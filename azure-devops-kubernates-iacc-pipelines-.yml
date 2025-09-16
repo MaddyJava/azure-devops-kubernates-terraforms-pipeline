@@ -27,10 +27,10 @@ steps:
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-manager-service-connection-one'
-    ensureBackend: true
+    ensureBackend: false
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageacctmadmunizyx'
     backendAzureRmContainerName: 'storageacctmadmunicontainer'
     backendAzureRmKey: 'kubernates-dev.tfstate'
-    allowTelemetryCollection: true
+    allowTelemetryCollection: false
