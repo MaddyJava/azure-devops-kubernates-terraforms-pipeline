@@ -13,7 +13,7 @@ steps:
   inputs:
     secureFile: 'azure_rsa.pub'
 
-- task: TerraformInstallerOCI@5
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
 
@@ -23,7 +23,7 @@ steps:
 - script: which terraform
 - bash: chmod +x /opt/hostedtoolcache/terraform/1.13.2/x64/terraform
   displayName: 'Terraform executable'
-- bash: ls $(terraform-working-directory)
+- bash: ls $(System.DefaultWorkingDirectory)
 - checkout: self
 - task: TerraformCLI@2
   inputs:
