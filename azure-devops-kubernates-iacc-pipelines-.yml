@@ -5,6 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -17,18 +18,12 @@ steps:
   inputs:
     terraformVersion: 'latest'
 
-- script: ls /opt/hostedtoolcache/terraform/1.13.2/x64/terraform
-- script: whereis terraform
-- script: terraform --version
-- script: which terraform
-- bash: chmod +x /opt/hostedtoolcache/terraform/1.13.2/x64/terraform
-  displayName: 'Terraform executable'
 - bash: ls $(System.DefaultWorkingDirectory)
-- checkout: self
+  displayName: TerraformWorkingDirectory
 - task: TerraformCLI@2
   inputs:
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernates'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-manager-service-connection-one'
